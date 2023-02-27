@@ -170,3 +170,17 @@ if($('.zap_teble').is(':visible')){
     setInterval(() => zap(), 20000);
 
 }
+
+// показываем ответ админа
+
+$('.add_rev').click(function () {
+    let id = $(this).data('id');
+    let rew = $('.answer_rew[data-id=' + id + ']');
+    if ($(rew).is(':visible')) {
+        $(rew).hide();
+        $(this).val('Посмотреть ответ администратора');
+    } else {
+        $(rew).show();
+        $(this).val('Скрыть');
+    }
+})

@@ -25,6 +25,7 @@
             <a href="index.php #p_master">Мастера</a>
             <a href="index.php #p_price">Цены</a>
             <a href="index.php #p_contact">Контакты</a>
+            <a href="reviews.php?page=1">Отзывы</a>
             <? if(!isset($_SESSION['user'])){?>
             <a href="login.php">Войти</a>
             <? } else { ?>

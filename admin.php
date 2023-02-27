@@ -4,6 +4,11 @@ include 'vendor/components/connect.php';
 if($_SESSION['user']['status'] != 1){
     header("Location:index.php");
 }
+if(empty($_GET['upd'])){
+    $href = 'admin.php';
+ } else {
+    $href = $_SERVER['HTTP_REFERER'];
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,10 +26,11 @@ if($_SESSION['user']['status'] != 1){
             <div class="adm_nav">
             <? 
             if(empty($_GET)){
+                echo '<a href="?mod" class="a_btn">Модерация отзывов</a>';
                 echo '<a class="a_btn" href="?masters">Мастера</a>';
                 echo '<a class="a_btn" href="?zap">Записи</a>';
             } else {
-                echo '<a style="margin-bottom:20px;" class="a_btn" href="admin.php">Вернуться назад</a>';
+                echo '<a style="margin-bottom:20px;" class="a_btn" href="'.$href.'">Вернуться назад</a>';
             }
             echo '</div>';
             echo '<div class="adm_section">';
@@ -35,6 +41,14 @@ if($_SESSION['user']['status'] != 1){
 
             if(isset($_GET['zap'])){
                 echo '<div class="zap_teble"></div>';
+            }
+
+            if(isset($_GET['upd'])){
+                include 'vendor/components/admin/upd_master.php';
+            }
+            
+            if(isset($_GET["mod"])){
+                include 'vendor/components/admin/moder_rev.php';
             }
 
             ?>

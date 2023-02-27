@@ -4,9 +4,9 @@ if ($_SESSION['user']['status'] == 1) {
     <div style="display:flex;gap:100px;">
         <form class="addMast" action="vendor/action/addMast.php" method="post" enctype="multipart/form-data">
             <h1 style="text-align: center;color:white;margin:20px 0;">Добавить мастера</h1>
-            <input type="text" name="name" placeholder="Имя мастера">
-            <input type="text" name="stage" placeholder="стаж мастера">
-            <textarea name="desc" id="" cols="30" rows="10" placeholder="Про мастера"></textarea>
+            <input type="text" name="name" placeholder="Имя мастера" required>
+            <input type="text" name="stage" placeholder="стаж мастера" required>
+            <textarea name="desc" id="" cols="30" rows="10" placeholder="Про мастера" required></textarea>
             Фото:<input type="file" name="foto">
             <input type="submit" name="addMast">
         </form>
@@ -23,7 +23,7 @@ if ($_SESSION['user']['status'] == 1) {
                 <option value="<?=$value['id']?>"><?=$value['name']?></option>
                 <? } ?>
             </select>
-            <input type="text" name="title" placeholder="Введите название стиля">
+            <input type="text" name="title" placeholder="Введите название стиля" required>
             <input type="submit" name="addStyle">
         </form>
     </div>
@@ -38,7 +38,7 @@ if ($_SESSION['user']['status'] == 1) {
                     <th>Стаж</th>
                     <th>Описание</th>
                     <th>Стили</th>
-                    <th></th>
+                    <th>action</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,7 +53,7 @@ if ($_SESSION['user']['status'] == 1) {
                         <td><img width="100px" src="vendor/img/<?= $value['foto'] ?>" alt=""></td>
                         <td><?= $value['name'] ?></td>
                         <td><?= $value['stage'] ?></td>
-                        <td><?= $value['desc'] ?></td>
+                        <td><div style="width: 500px;white-space:normal"><?= $value['desc'] ?></div></td>
                         <td>
                             <? 
                             $styles = $link->query("SELECT * FROM `styles` WHERE `id_master` = '{$value['id']}'");
@@ -64,7 +64,7 @@ if ($_SESSION['user']['status'] == 1) {
                             }
                             ?>
                         </td>
-                        <td><a href="vendor/components/admin/upd_master.php?id=<?=$value['id']?>">Изменить</a></td>
+                        <td><a href="?id=<?=$value['id']?>&upd=1">Изменить</a></td>
                     </tr>
                 <? endforeach; ?>
             </tbody>
